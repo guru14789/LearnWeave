@@ -268,35 +268,6 @@
         "date": "June 2026"
       }
     },
-    "team": {
-      "title": "Meet Our Team",
-      "members": {
-        "markusHuber": {
-          "role": "Software Architect & Full-Stack Developer",
-          "bio": "AI expert with 15+ years experience in machine learning and adaptive education systems."
-        },
-        "lucaBozzetti": {
-          "role": "AI Researcher & Agent Developer",
-          "bio": "Former professor with a passion for innovating education through technology."
-        },
-        "sebastianRogg": {
-          "role": "Still in progress",
-          "bio": "Full-stack engineer specializing in AI integration and responsive learning systems."
-        },
-        "matthiasMeierlohr": {
-          "role": "Frontend Designer & UX Specialist",
-          "bio": "Swift UI designer focused on creating intuitive, user-friendly interfaces for AI applications."
-        },
-        "jonasHoerter": {
-          "role": "Eierlecker & Backend Developer",
-          "bio": "Swift UI designer focused on creating intuitive, user-friendly interfaces for AI applications."
-        },
-        "paulVorderbruegge": {
-          "role": "Beer Lover & Backend Specialist",
-          "bio": "Swift UI designer focused on creating intuitive, user-friendly interfaces for AI applications."
-        }
-      }
-    },
     "cta": {
       "title": "Ready to Transform Your Learning Journey?",
       "subtitle": "Join thousands who are already experiencing the future of education.",

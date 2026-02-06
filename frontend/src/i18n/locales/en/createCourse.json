@@ -6,8 +6,7 @@
       "label": "Course Language",
       "placeholder": "Select course language",
       "options": {
-        "english": "English",
-        "german": "German"
+        "english": "English"
       }
     },
     "difficulty": {

@@ -40,11 +40,6 @@
     "imageAlt": "Diagramm, das die drei Schritte zum Lernen mit LearnWeave zeigt",
     "cta": "Erstelle deinen individuellen Kurs"
   },
-  "award": {
-    "title": "EMEA Regionaler Sieger",
-    "subtitle": "Google Cloud Agent Development Kit Hackathon",
-    "body": "Unter mehr als 10.000 Teilnehmern weltweit wurde unsere Plattform für ihre herausragende Leistung im Aufbau innovativer Multi-Agenten-KI-Systeme ausgezeichnet. Diese Auszeichnung unterstreicht unser Engagement, die Grenzen der automatisierten Inhaltserstellung und Datenanalyse zu erweitern."
-  },
   "testimonials": {
     "title": "Von ambitionierten Lernenden geschätzt",
     "quote1": "\"Ich habe monatelang versucht, Python mit Online-Videos zu lernen. Mit LearnWeave habe ich in nur drei Wochen meine erste echte Anwendung erstellt. Der personalisierte Pfad hat den Unterschied gemacht.\"",
