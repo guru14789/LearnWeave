@@ -19,7 +19,7 @@ from ..config import settings
 from ..agents.chat_agent.agent import ChatAgent
 from ..agents.utils import create_text_query
 from ..api.schemas.chat import ChatRequest
-from ..config.settings import SQLALCHEMY_DATABASE_URL
+from ..config.settings import ASYNC_SQLALCHEMY_DATABASE_URL
 from ..db.database import get_db_context
 
 from ..db.crud import chapters_crud
@@ -39,7 +39,7 @@ class ChatService:
         # Initialize the session service with just the database URL
         # The ADK will create its own engine internally
         self.session_service = DatabaseSessionService(
-            db_url=SQLALCHEMY_DATABASE_URL,
+            db_url=ASYNC_SQLALCHEMY_DATABASE_URL,
             pool_recycle=settings.DB_POOL_RECYCLE,
             pool_pre_ping=settings.DB_POOL_PRE_PING,
             pool_size=settings.DB_POOL_SIZE,

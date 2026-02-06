@@ -62,16 +62,36 @@ REFRESH_TOKEN_EXPIRE_MINUTES = int(os.getenv("REFRESH_TOKEN_EXPIRE_MINUTES", "36
 SECURE_COOKIE = os.getenv("SECURE_COOKIE", "true").lower() == "true"
 
 
-# Database settings (PostgreSQL for Supabase)
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "your_db_password")
+# Database settings
+DB_USER = os.getenv("DB_USER", "nexora_user")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "your_secure_password")
 DB_HOST = os.getenv("DB_HOST", "localhost")
-DB_PORT = os.getenv("DB_PORT", "5432") # Default PostgreSQL port
-DB_NAME = os.getenv("DB_NAME", "postgres")
+DB_PORT = os.getenv("DB_PORT", "3306") 
+DB_NAME = os.getenv("DB_NAME", "nexora_db")
 
-# Use PostgreSQL for Supabase - URL encode password to handle special characters
-SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{quote_plus(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-# For SQLite (testing): # SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
+# Allow direct override via DATABASE_URL
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not SQLALCHEMY_DATABASE_URL:
+    # Fallback to construction from components
+    # Check if we should use MySQL or PostgreSQL based on port or another env var
+    if DB_PORT == "3306" or "mysql" in DB_USER or "nexora_db" in DB_NAME:
+        # Use MySQL with pymysql driver
+        SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{quote_plus(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    else:
+        # Default to PostgreSQL (Supabase)
+        SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg2://{DB_USER}:{quote_plus(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+# Derive async URL for ADK and other async needs
+ASYNC_SQLALCHEMY_DATABASE_URL = os.getenv("ASYNC_DATABASE_URL")
+if not ASYNC_SQLALCHEMY_DATABASE_URL:
+    ASYNC_SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL
+    if ASYNC_SQLALCHEMY_DATABASE_URL.startswith("sqlite://"):
+        ASYNC_SQLALCHEMY_DATABASE_URL = ASYNC_SQLALCHEMY_DATABASE_URL.replace("sqlite://", "sqlite+aiosqlite://")
+    elif ASYNC_SQLALCHEMY_DATABASE_URL.startswith("postgresql+psycopg2://"):
+        ASYNC_SQLALCHEMY_DATABASE_URL = ASYNC_SQLALCHEMY_DATABASE_URL.replace("postgresql+psycopg2://", "postgresql+asyncpg://")
+    elif ASYNC_SQLALCHEMY_DATABASE_URL.startswith("mysql+pymysql://"):
+        ASYNC_SQLALCHEMY_DATABASE_URL = ASYNC_SQLALCHEMY_DATABASE_URL.replace("mysql+pymysql://", "mysql+aiomysql://")
 
 # DB Pooling Settings
 DB_POOL_RECYCLE = int(os.getenv("DB_POOL_RECYCLE", 3600))
