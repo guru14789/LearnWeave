@@ -1,6 +1,6 @@
 
 // -----------------------------------> 1 Server Configuration <-----------------------------------
-# This file is used to configure the Nginx server for the Nexora AI application.
+# This file is used to configure the Nginx server for the LearnWeave application.
 server {
   listen 80;
   listen [::]:80;
